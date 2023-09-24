@@ -26,22 +26,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int count = 0;
 
-  void _increment() {
-    setState(() {
-      count++;
-      if (count >= 5) {
-        _showDialog();
-      }
-    });
-  }
-
-  void _decrement() {
-    setState(() {
-      if (count > 0) {
-        count--;
-      }
-    });
-  }
 
   void _showDialog() {
     showDialog(
@@ -89,11 +73,28 @@ class _HomePageState extends State<HomePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ElevatedButton(onPressed: _decrement, child: Text("-")),
+                ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        count++;
+                        if (count >= 5) {
+                          _showDialog();
+                        }
+                      });
+                    },
+                    child: Text("+")),
                 SizedBox(
                   width: 20,
                 ),
-                ElevatedButton(onPressed: _increment, child: Text("+")),
+                ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        if (count > 0) {
+                          count--;
+                        }
+                      });
+                    },
+                    child: Text("-")),
               ],
             )
           ],
